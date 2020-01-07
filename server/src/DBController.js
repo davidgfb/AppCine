@@ -41,7 +41,7 @@ const DBController = {
   // Inserta una nueva película en la base de datos
   insertPelicula: function(req){
 
-    var newPelicula = new DBController.pelicula({
+    var newPelicula = new models.pelicula({
 
       _id:              new mongoose.Types.ObjectId(),
       titulo:           req.body.titulo,
@@ -87,7 +87,7 @@ const DBController = {
   // Inserta una nueva sala en la base de datos
   insertSala: function(req){
 
-    var newSala = new DBController.sala({
+    var newSala = new models.sala({
       _id:           new mongoose.Types.ObjectId(),
       numSala:       req.body.numSala,
       filas:         req.body.filas,
@@ -123,7 +123,7 @@ const DBController = {
   // Inserta una nueva entrada en la base de datos
   insertEntrada: function(req){
 
-    var newEntrada = new DBController.entrada({
+    var newEntrada = new models.entrada({
 
       _id:            new mongoose.Types.ObjectId(),
       fecha: {
@@ -177,7 +177,7 @@ const DBController = {
   // Inserta un nuevo cliente en la base de datos
   insertCliente: function(req){
 
-    var newCliente = new DBController.cliente({
+    var newCliente = new models.cliente({
 
       _id:            new mongoose.Types.ObjectId(),
       nombre:         req.body.nombre,

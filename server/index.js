@@ -4,7 +4,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const DBController = require('./src/DBController');
-const Router = require('./src/router');
+const Router = require('./src/Router');
 
 // Definición de constantes
 const app = express();
