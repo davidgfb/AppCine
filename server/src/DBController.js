@@ -92,18 +92,18 @@ const DBController = {
       function(err, pelicula){
         if(err) return console.error(err);
 
-        pelicula.titulo: (pelicula.titulo !== req.body.titulo) ? req.body.titulo : pelicula.titulo;
-        pelicula.tituloOriginal: (pelicula.tituloOriginal !== req.body.tituloOriginal) ? req.body.tituloOriginal : pelicula.tituloOriginal;
-        pelicula.sinopsis: (pelicula.sinopsis !== req.body.sinopsis) ? req.body.sinopsis : pelicula.sinopsis;
-        pelicula.pagOficial: (pelicula.pagOficial !== req.body.pagOficial) ? req.body.pagOficial : pelicula.pagOficial;
-        pelicula.genero: (pelicula.genero !== req.body.genero) ? req.body.genero : pelicula.genero;
-        pelicula.duracion: (pelicula.duracion !== req.body.duracion) ? req.body.duracion : pelicula.duracion;
-        pelicula.nacionalidad: (pelicula.nacionalidad !== req.body.nacionalidad) ? req.body.nacionalidad : pelicula.nacionalidad;
-        pelicula.annoEstreno: (pelicula.annoEstreno !== req.body.annoEstreno) ? req.body.annoEstreno : pelicula.annoEstreno;
-        pelicula.distribuidora: (pelicula.distribuidora !== req.body.distribuidora) ? req.body.distribuidora : pelicula.distribuidora;
-        pelicula.director: (pelicula.director !== req.body.director) ? req.body.director : pelicula.director;
-        pelicula.actores: (pelicula.actores !== req.body.actores) ? req.body.actores : pelicula.actores;
-        pelicula.edadMin: (pelicula.edadMin !== req.body.edadMin) ? req.body.edadMin : pelicula.edadMin;
+        pelicula.titulo = (pelicula.titulo !== req.body.titulo) ? req.body.titulo : pelicula.titulo;
+        pelicula.tituloOriginal = (pelicula.tituloOriginal !== req.body.tituloOriginal) ? req.body.tituloOriginal : pelicula.tituloOriginal;
+        pelicula.sinopsis = (pelicula.sinopsis !== req.body.sinopsis) ? req.body.sinopsis : pelicula.sinopsis;
+        pelicula.pagOficial = (pelicula.pagOficial !== req.body.pagOficial) ? req.body.pagOficial : pelicula.pagOficial;
+        pelicula.genero = (pelicula.genero !== req.body.genero) ? req.body.genero : pelicula.genero;
+        pelicula.duracion = (pelicula.duracion !== req.body.duracion) ? req.body.duracion : pelicula.duracion;
+        pelicula.nacionalidad = (pelicula.nacionalidad !== req.body.nacionalidad) ? req.body.nacionalidad : pelicula.nacionalidad;
+        pelicula.annoEstreno = (pelicula.annoEstreno !== req.body.annoEstreno) ? req.body.annoEstreno : pelicula.annoEstreno;
+        pelicula.distribuidora = (pelicula.distribuidora !== req.body.distribuidora) ? req.body.distribuidora : pelicula.distribuidora;
+        pelicula.director = (pelicula.director !== req.body.director) ? req.body.director : pelicula.director;
+        pelicula.actores = (pelicula.actores !== req.body.actores) ? req.body.actores : pelicula.actores;
+        pelicula.edadMin = (pelicula.edadMin !== req.body.edadMin) ? req.body.edadMin : pelicula.edadMin;
 
         pelicula.save()
                 .then(doc => {
@@ -198,11 +198,11 @@ const DBController = {
             return console.error("El número de sala ya está en uso");
           }
         }else{
-          sala.numSala: req.body.numSala;
+          sala.numSala = req.body.numSala;
         }
 
-        sala.filas: (sala.filas == req.body.filas) ? sala.filas : req.body.filas;
-        sala.columnas: (sala.columnas == req.body.columnas) ? sala.columnas : req.body.columnas;
+        sala.filas = (sala.filas == req.body.filas) ? sala.filas : req.body.filas;
+        sala.columnas = (sala.columnas == req.body.columnas) ? sala.columnas : req.body.columnas;
 
         sala.save()
             .then(doc => {
@@ -299,10 +299,10 @@ const DBController = {
   // base de datos
   getAllEntradas: function(){
     models.entrada.find({},function(err, entradas){
-      if(err) return console.error.(err);
+      if(err) return console.error(err);
       return entradas;
     });
-  }
+  },
 /***************** FIN FUNCIONES ENTRADAS *******************/
 
 
@@ -355,11 +355,11 @@ const DBController = {
       function(err, cliente){
         if(err) return console.error(err);
 
-        cliente.nombre: (cliente.nombre !== req.body.nombre) ? req.body.nombre : cliente.nombre;
-        cliente.apellidos: (cliente.apellidos !== req.body.apellidos) ? req.body.apellidos : cliente.apellidos;
-        cliente.tlf: (cliente.tlf !== req.body.tlf) ? req.body.tlf : cliente.tlf;
-        cliente.email: (cliente.email !== req.body.email) ? req.body.email : cliente.email;
-        cliente.numTarjeta: (cliente.numTarjeta !== req.body.numTarjeta) ? req.body.numTarjeta : cliente.numTarjeta;
+        cliente.nombre = (cliente.nombre !== req.body.nombre) ? req.body.nombre : cliente.nombre;
+        cliente.apellidos = (cliente.apellidos !== req.body.apellidos) ? req.body.apellidos : cliente.apellidos;
+        cliente.tlf = (cliente.tlf !== req.body.tlf) ? req.body.tlf : cliente.tlf;
+        cliente.email = (cliente.email !== req.body.email) ? req.body.email : cliente.email;
+        cliente.numTarjeta = (cliente.numTarjeta !== req.body.numTarjeta) ? req.body.numTarjeta : cliente.numTarjeta;
 
         cliente.save()
                .then(doc => {
@@ -384,7 +384,7 @@ const DBController = {
   // base de datos
   getAllClientes: function(){
     models.cliente.find({},function(err, clientes){
-      if(err) return console.error.(err);
+      if(err) return console.error(err);
       return clientes;
     });
   }
