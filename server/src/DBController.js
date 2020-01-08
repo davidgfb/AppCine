@@ -37,6 +37,9 @@ const DBController = {
     );
   },
 
+/*************************************************************
+ *                 FUNCIONES - PELICULAS                     *
+ *************************************************************/
 
   // Inserta una nueva película en la base de datos
   insertPelicula: function(req){
@@ -72,7 +75,7 @@ const DBController = {
   // base de datos
   delPelicula: function(req){
 
-    DBController.pelicula.deleteOne(
+    models.pelicula.deleteOne(
       {"_id": req.body.id},
       function(err){
         if(err) return console.error(err);
@@ -80,8 +83,73 @@ const DBController = {
     );
   },
 
-  modPelicula: function(){},
-  queryPelicula: function(){},
+  // Modifica los campos de una película (determinada por su ID)
+  // Solo sustituye los datos que no coincidan con los previos
+  modPelicula: function(req){
+
+    models.pelicula.findById(
+      req.body.id,
+      function(err, pelicula){
+        if(err) return console.error(err);
+
+        pelicula.titulo: (pelicula.titulo !== req.body.titulo) ? req.body.titulo : pelicula.titulo;
+        pelicula.tituloOriginal: (pelicula.tituloOriginal !== req.body.tituloOriginal) ? req.body.tituloOriginal : pelicula.tituloOriginal;
+        pelicula.sinopsis: (pelicula.sinopsis !== req.body.sinopsis) ? req.body.sinopsis : pelicula.sinopsis;
+        pelicula.pagOficial: (pelicula.pagOficial !== req.body.pagOficial) ? req.body.pagOficial : pelicula.pagOficial;
+        pelicula.genero: (pelicula.genero !== req.body.genero) ? req.body.genero : pelicula.genero;
+        pelicula.duracion: (pelicula.duracion !== req.body.duracion) ? req.body.duracion : pelicula.duracion;
+        pelicula.nacionalidad: (pelicula.nacionalidad !== req.body.nacionalidad) ? req.body.nacionalidad : pelicula.nacionalidad;
+        pelicula.annoEstreno: (pelicula.annoEstreno !== req.body.annoEstreno) ? req.body.annoEstreno : pelicula.annoEstreno;
+        pelicula.distribuidora: (pelicula.distribuidora !== req.body.distribuidora) ? req.body.distribuidora : pelicula.distribuidora;
+        pelicula.director: (pelicula.director !== req.body.director) ? req.body.director : pelicula.director;
+        pelicula.actores: (pelicula.actores !== req.body.actores) ? req.body.actores : pelicula.actores;
+        pelicula.edadMin: (pelicula.edadMin !== req.body.edadMin) ? req.body.edadMin : pelicula.edadMin;
+
+        pelicula.save()
+                .then(doc => {
+                  console.log(doc);
+                })
+                .catch(err => {
+                  console.error(err);
+                });
+      }
+    );
+  },
+
+  // Devuelve una pelicula siempre y cuando el id
+  // indicado en la petición tenga una coincidencia
+  queryPelicula: function(req){
+
+    models.pelicula.findById(
+      req.body.id,
+      function(err, pelicula){
+        if(err) return console.error(err);
+
+        return pelicula;
+      }
+    );
+  },
+
+
+  queryPeliculas_sala: function(){},
+  queryPeliculas_genero: function(){},
+  queryPeliculas_anno: function(){},
+  queryPeliculas_edadMin: function(){},
+
+  // Devuelve todas las peliculas presentes en la
+  // base de datos
+  getAllPeliculas: function(){
+    models.pelicula.find({},function(err, peliculas){
+      if(err) return console.error(err);
+      return peliculas;
+    });
+  },
+/***************** FIN FUNCIONES PELICULAS *******************/
+
+
+/*************************************************************
+ *                      FUNCIONES SALAS                      *
+ *************************************************************/
 
 
   // Inserta una nueva sala en la base de datos
@@ -108,7 +176,7 @@ const DBController = {
   // de la base de datos
   delSala: function(req){
 
-    DBController.sala.deleteOne(
+    models.sala.deleteOne(
       {numSala: req.body.numSala},
       function(err){
         if(err) return console.error(err);
@@ -116,9 +184,70 @@ const DBController = {
     );
   },
 
-  modSala: function(){},
-  querySala: function(){},
+  // Modifica los campos de una sala (determinada por su ID)
+  // Solo sustituye los datos que no coincidan con los previos
+  modSala: function(req){
 
+    models.sala.findById(
+      req.body.id,
+      function(err, sala){
+        if(err) return console.error(err);
+
+        if(req.body.numSala != sala.numSala){
+          if(models.sala.exists({numSala: req.body.numSala})){
+            return console.error("El número de sala ya está en uso");
+          }
+        }else{
+          sala.numSala: req.body.numSala;
+        }
+
+        sala.filas: (sala.filas == req.body.filas) ? sala.filas : req.body.filas;
+        sala.columnas: (sala.columnas == req.body.columnas) ? sala.columnas : req.body.columnas;
+
+        sala.save()
+            .then(doc => {
+              console.log(doc);
+            })
+            .catch(err => {
+              console.error(err);
+            });
+      }
+    );
+  },
+
+  // Devuelve la sala cuyo "numero de sala" coincida
+  // con el indicado en la petición
+  querySala: function(req){
+
+    models.sala.findOne(
+      { numSala: req.body.numSala},
+      function(err, sala){
+        if(err) return console.error(err);
+
+        // Puede que devuelva un valor nulo (?)
+        return sala;
+    })
+  },
+
+  // Devuelve todas las salas presentes en la
+  // base de datos
+  getAllSalas: function(){
+    models.sala.find({},function(err, salas){
+      if(err) return console.error(err);
+      return salas;
+    });
+  },
+/******************* FIN FUNCIONES SALAS *********************/
+
+
+
+/*************************************************************
+ *                    FUNCIONES ENTRADAS                     *
+ *************************************************************/
+
+  // ===================================================
+  // = IMPORTANTE: Las entradas no se pueden modificar =
+  // ===================================================
 
   // Inserta una nueva entrada en la base de datos
   insertEntrada: function(req){
@@ -155,7 +284,7 @@ const DBController = {
   // la base de datos
   delEntrada: function(req){
 
-    DBController.entrada.deleteOne(
+    models.entrada.deleteOne(
       {"_id": req.body.id},
       function(err){
         if(err) return console.error(err);
@@ -163,16 +292,23 @@ const DBController = {
     )
   },
 
-  modEntrada: function(){},
   queryEntrada: function(){},
 
-  queryReserva: function(){},
 
-  peliculas_sala: function(){},
-  peliculas_genero: function(){},
-  peliculas_anno: function(){},
-  peliculas_duracion: function(){},
+  // Devuelve todas las entradas presentes en la
+  // base de datos
+  getAllEntradas: function(){
+    models.entrada.find({},function(err, entradas){
+      if(err) return console.error.(err);
+      return entradas;
+    });
+  }
+/***************** FIN FUNCIONES ENTRADAS *******************/
 
+
+/*************************************************************
+ *                    FUNCIONES CLIENTES                     *
+ *************************************************************/
 
   // Inserta un nuevo cliente en la base de datos
   insertCliente: function(req){
@@ -202,16 +338,59 @@ const DBController = {
   // la base de datos
   delCliente: function(req){
 
-    DBController.cliente.deleteOne(
+    models.cliente.deleteOne(
       {"_id": req.body.id},
       function(err){
         if(err) return console.error(err);
       }
-    )
+    );
+  },
+
+  // Modifica los campos de un cliente (determinado por su ID)
+  // Solo sustituye los datos que no coincidan con los previos
+  modCliente: function(req){
+
+    models.cliente.findById(
+      req.body.id,
+      function(err, cliente){
+        if(err) return console.error(err);
+
+        cliente.nombre: (cliente.nombre !== req.body.nombre) ? req.body.nombre : cliente.nombre;
+        cliente.apellidos: (cliente.apellidos !== req.body.apellidos) ? req.body.apellidos : cliente.apellidos;
+        cliente.tlf: (cliente.tlf !== req.body.tlf) ? req.body.tlf : cliente.tlf;
+        cliente.email: (cliente.email !== req.body.email) ? req.body.email : cliente.email;
+        cliente.numTarjeta: (cliente.numTarjeta !== req.body.numTarjeta) ? req.body.numTarjeta : cliente.numTarjeta;
+
+        cliente.save()
+               .then(doc => {
+                 console.log(doc);
+               })
+               .catch(err => {
+                 console.error(err);
+               });
+      }
+    );
   },
 
   queryCliente: function(){},
-  queryClientes: function(){}
+  addEntradaToCliente: function(){},
+  removeEntradaFromCliente: function(){},
+  addOpinionToCliente: function(){},
+  removeOpinionFromCliente: function(){},
+  getEntradasByCliente: function(){},
+  getOpinionesByCliente: function(){},
+
+  // Devuelve todos los clientes presentes en la
+  // base de datos
+  getAllClientes: function(){
+    models.cliente.find({},function(err, clientes){
+      if(err) return console.error.(err);
+      return clientes;
+    });
+  }
+/*************** FIN FUNCIONES CLIENTES *****************/
+
 }
+
 
 module.exports = DBController;
