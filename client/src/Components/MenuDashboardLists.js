@@ -5,10 +5,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 // Iconos
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PeopleIcon from '@material-ui/icons/People';
-import LayersIcon from '@material-ui/icons/Layers';
-import BarChartIcon from '@material-ui/icons/BarChart';
+import VideocamIcon from '@material-ui/icons/Videocam';
+import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
+import LooksOneIcon from '@material-ui/icons/LooksOne';
+import PersonIcon from '@material-ui/icons/Person';
 
 export const AdminList = (
   <div>
@@ -20,25 +21,25 @@ export const AdminList = (
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <ShoppingCartIcon />
+        <VideocamIcon />
       </ListItemIcon>
       <ListItemText primary="Peliculas"/>
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <PeopleIcon/>
+        <ConfirmationNumberIcon/>
       </ListItemIcon>
       <ListItemText primary="Entradas"/>
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <BarChartIcon />
+        <LooksOneIcon />
       </ListItemIcon>
       <ListItemText primary="Salas"/>
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <LayersIcon/>
+        <PeopleIcon/>
       </ListItemIcon>
       <ListItemText primary="Clientes"/>
     </ListItem>
@@ -55,19 +56,19 @@ export const ClientList = (
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <ShoppingCartIcon />
+        <VideocamIcon />
       </ListItemIcon>
       <ListItemText primary="Peliculas"/>
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <PeopleIcon/>
+        <ConfirmationNumberIcon/>
       </ListItemIcon>
       <ListItemText primary="Mis Entradas"/>
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <LayersIcon/>
+        <PersonIcon/>
       </ListItemIcon>
       <ListItemText primary="Mi cuenta"/>
     </ListItem>

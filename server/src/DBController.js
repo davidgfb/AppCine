@@ -1,5 +1,6 @@
 'use strict';
-
+// TODO: Hacer una función para autenticar al usuario y que diferencie:
+// Usuario, admin y err en caso de no conseguir autenticarse
 // Módulos importados
 const mongoose = require('mongoose');
 const Pelicula = require('./models/Pelicula');
