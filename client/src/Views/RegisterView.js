@@ -54,7 +54,7 @@ export default function RegisterView(){
       alignSelf: 'center',
       cursor: 'pointer'
     }
-  }))
+}))
 
   // Construcción de la vista
   function RegisterView(){
@@ -65,7 +65,7 @@ export default function RegisterView(){
         <Grid item xs={12} sm={8} md={6} component={Paper} elevation={8}>
           <div className={classes.paper}>
             <VoiceChatIcon color="primary" className={classes.logo}/>
-            <Typography className={classes.title} align="center" color="primary" component="h2" variant="h3">
+            <Typography className={classes.title} align="center" color="primary" component="h2" variant="h4">
               Registro
             </Typography>
             <hr className={classes.separator}/>
