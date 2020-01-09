@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import RegisterView from './RegisterView';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Paper from "@material-ui/core/Paper";
@@ -6,10 +8,10 @@ import Link from "@material-ui/core/Link";
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import VoiceChatIcon from '@material-ui/icons/VoiceChatTwoTone';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 
-export default function Login(){
+export default function LoginView(){
 
   // Estilos empleados en la vista
   const useStyles = makeStyles(theme => ({
@@ -46,7 +48,7 @@ export default function Login(){
         fontFamily: 'Monospace'
       },
       separator: {
-        marginBottom: theme.spacing(8),
+        marginBottom: theme.spacing(6),
         width: '80%'
       },
       form: {
@@ -76,7 +78,7 @@ export default function Login(){
     const classes = useStyles();
 
     return(
-      <Grid container componenimaget="main" className={classes.root}>
+      <Grid container component="main" className={classes.root}>
         <Grid item xs={false} sm={4} md={6} className={classes.image}/>
         <Grid item xs={12} sm={8} md={6} component={Paper} elevation={8} >
           <div className={classes.paper}>
@@ -106,7 +108,16 @@ export default function Login(){
               <Button className={classes.submit} variant='contained' color='primary' fullWidth>
                 Acceder
               </Button>
-              <Link href="#" variant="body2" className={classes.register}>
+              <Link
+                variant="body2"
+                className={classes.register}
+                onClick={() => {
+                  ReactDOM.render(
+                    <RegisterView/>,
+                    document.getElementById("root")
+                  )
+                }}
+              >
                 {"¿No tienes cuenta? Registrate"}
               </Link>
             </form>

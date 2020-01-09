@@ -1,8 +1,8 @@
 import React from 'react';
-import Login from './Views/Login';
-
+import LoginView from './Views/LoginView';
+import RegisterView from './Views/RegisterView';
 function App() {
-  return (<Login />);
+  return (<RegisterView />);
 }
 
 export default App;

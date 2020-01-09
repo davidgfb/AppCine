@@ -320,6 +320,7 @@ const DBController = {
       apellidos:      req.body.apellidos,
       tlf:            req.body.tlf,
       email:          req.body.email,
+      password:       req.body.password,
       numTarjeta:     '',
       entradasID:     [],
       opiniones:      []

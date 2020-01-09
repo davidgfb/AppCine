@@ -19,6 +19,7 @@ var ClienteSchema = mongoose.Schema({
   apellidos:      String,
   tlf:            Number,
   email:          String,
+  password:       String,
   numTarjeta:     String,
   entradasID:     [mongoose.Schema.Types.ObjectId],
   opiniones:      [OpinionSchema]
