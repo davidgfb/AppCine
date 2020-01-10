@@ -1,4 +1,8 @@
 import React from 'react';
+import clsx from 'clsx'; // Gestionar clases de forma sencilla
+
+// Componentes
+import CardPelicula from '../Components/CardPelicula';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
@@ -6,16 +10,13 @@ import IconButton from '@material-ui/core/IconButton';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
-import { AdminList, ClientList } from '../Components/MenuDashboardLists';
+import { AdminList, ClientList } from '../Components/NavDashboardLists';
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx'; // Gestionar clases de forma sencilla
 
 // Iconos
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import VoiceChatIcon from '@material-ui/icons/VoiceChatTwoTone';
-
-
 
 
 const drawerWidth = 240;
@@ -54,18 +55,27 @@ const useStyles = makeStyles(theme => ({
   menuButtonHidden: {
     display: 'none',
   },
+  branding: {
+    flexGrow: 1,
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'row-reverse',
+    alignItems: 'center',
+    [theme.breakpoints.down('sm')]: {
+      justifyContent: 'flex-start'
+    }
+  },
   logo: {
     fontSize: 35,
-    marginRight: theme.spacing(2)
   },
   title: {
     fontFamily: 'Monospace',
     letterSpacing: 4,
+    marginRight: theme.spacing(2),
     fontSize: 35,
     [theme.breakpoints.down('sm')]: {
       display: 'none'
     },
-    flexGrow: 1
   },
   drawerPaper: {
     position: 'relative',
@@ -93,7 +103,12 @@ const useStyles = makeStyles(theme => ({
   content: {
     flexGrow: 1,
     height: '100vh',
-    overflow: 'auto'
+    overflow: 'auto',
+    backgroundColor: 'rgb(198, 198, 198)'
+  },
+  widget: {
+    display: 'flex',
+    padding: theme.spacing(1)
   }
 }));
 
@@ -128,10 +143,12 @@ export default function Dashboard(){
           >
             <MenuIcon />
           </IconButton>
-          <VoiceChatIcon color="info" className={classes.logo}/>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            CineManager
-          </Typography>
+          <div className={classes.branding}>
+            <VoiceChatIcon color="info" className={classes.logo}/>
+            <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+              CineManager
+            </Typography>
+          </div>
         </Toolbar>
       </AppBar>
 
@@ -147,7 +164,7 @@ export default function Dashboard(){
 
         <div className={classes.toolbarIcon}>
           <Typography component="h5" variant="h6" color="primary">
-            Menú
+            Navegación
           </Typography>
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
@@ -161,6 +178,13 @@ export default function Dashboard(){
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
+        <div className={classes.widget}>
+          <CardPelicula/>
+          <CardPelicula/>
+          <CardPelicula/>
+          <CardPelicula/>
+          <CardPelicula/>
+        </div>
       </main>
     </div>
   )
