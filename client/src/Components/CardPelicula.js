@@ -74,8 +74,6 @@ export default function CardPelicula(){
         Nunc ultricies purus ligula, eu pretium arcu venenatis vel. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla sollicitudin, neque sit amet tempus mattis, sapien diam luctus erat,
         eget viverra nunc diam non mauris. Suspendisse dictum bibendum molestie. Suspendisse porttitor varius est et tempor.
-        Cras ut nisi arcu. Aliquam erat volutpat. Nam rhoncus, neque eget vehicula rutrum, libero orci imperdiet erat, at cursus risus nibh ultrices augue.
-        Praesent sollicitudin vitae augue sit amet maximus. Aliquam lectus mi, malesuada ut dolor et, pulvinar consectetur est.
         </Typography>
       </CardContent>
       <CardActions className={classes.actions}>
