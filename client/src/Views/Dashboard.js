@@ -2,7 +2,13 @@ import React from 'react';
 import clsx from 'clsx'; // Gestionar clases de forma sencilla
 
 // Componentes
-import CardPelicula from '../Components/CardPelicula';
+import ManagerCard from '../Components/ManagerCard';
+import CardDelSala from '../Components/CardDelSala';
+import CardModSala from '../Components/CardModSala';
+import CardAddSala from '../Components/CardAddSala';
+import CardDelPelicula from '../Components/CardDelPelicula';
+import CardModPelicula from '../Components/CardModPelicula';
+import CardAddPelicula from '../Components/CardAddPelicula';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
@@ -22,7 +28,7 @@ import VoiceChatIcon from '@material-ui/icons/VoiceChatTwoTone';
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex'
+    display: 'flex',
   },
   toolbarIcon: {
     display: 'flex',
@@ -94,9 +100,13 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    width: theme.spacing(7),
+    // width: theme.spacing(7),
     [theme.breakpoints.up('sm')]: {
+      variant: 'persistent',
       width: theme.spacing(9),
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: theme.spacing(0),
     }
   },
   appBarSpacer: theme.mixins.toolbar,
@@ -104,7 +114,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
-    backgroundColor: 'rgb(198, 198, 198)'
+    backgroundColor: 'rgba(173, 204, 222, 0.75)'
   },
   widget: {
     display: 'flex',
@@ -179,11 +189,13 @@ export default function Dashboard(){
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <div className={classes.widget}>
-          <CardPelicula/>
-          <CardPelicula/>
-          <CardPelicula/>
-          <CardPelicula/>
-          <CardPelicula/>
+          <ManagerCard/>
+          <CardAddPelicula/>
+          <CardModPelicula/>
+          <CardDelPelicula/>
+          <CardDelSala/>
+          <CardModSala/>
+          <CardAddSala/>
         </div>
       </main>
     </div>

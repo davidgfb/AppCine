@@ -5,6 +5,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 // Iconos
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import ThumbsUpDownIcon from '@material-ui/icons/ThumbsUpDown';
 import PeopleIcon from '@material-ui/icons/People';
 import VideocamIcon from '@material-ui/icons/Videocam';
 import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
@@ -39,6 +40,12 @@ export const AdminList = (
     </ListItem>
     <ListItem button>
       <ListItemIcon>
+        <ThumbsUpDownIcon />
+      </ListItemIcon>
+      <ListItemText primary="Opiniones"/>
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
         <PeopleIcon/>
       </ListItemIcon>
       <ListItemText primary="Clientes"/>
@@ -65,6 +72,12 @@ export const ClientList = (
         <ConfirmationNumberIcon/>
       </ListItemIcon>
       <ListItemText primary="Mis Entradas"/>
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <ThumbsUpDownIcon/>
+      </ListItemIcon>
+      <ListItemText primary="Mis opiniones"/>
     </ListItem>
     <ListItem button>
       <ListItemIcon>

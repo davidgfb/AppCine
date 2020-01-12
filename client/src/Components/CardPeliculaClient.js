@@ -11,18 +11,16 @@ const useStyles = makeStyles((theme) => ({
   card: {
     display: 'flex',
     flexDirection: 'column',
-    minHeight: '70vh',
+    maxHeight: '85vh',
     minWidth: '40%',
     maxWidth: '45%',
     margin: theme.spacing(2),
     padding: theme.spacing(2),
+    marginRight: theme.spacing(2),
     paddingTop: 0,
-    [theme.breakpoints.down('sm')]: {
-      minWidth: '50%',
-
-    },
     [theme.breakpoints.down('xs')]: {
-      minWidth: '100%',
+      minWidth: '85%',
+      maxHeight: 'none'
     }
   },
   cardContent: {
@@ -55,17 +53,16 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function CardPelicula(){
-
+export default function CardPeliculaClient(props){
   const classes = useStyles();
   return(
     <Card className={classes.card}>
       <CardContent className={classes.cardContent}>
         <Typography className={classes.title}>
-          Prueba de Card
+          {props.titulo}
         </Typography>
         <Divider className={classes.divider}/>
-        <div className={classes.image}></div>
+        <div className={classes.image}/>
         <Typography className={classes.content}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vitae rutrum nunc, eget consequat lectus.
         Curabitur malesuada neque eget consequat molestie. Morbi posuere arcu vitae lectus auctor, vitae commodo purus ornare.

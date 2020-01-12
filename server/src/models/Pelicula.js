@@ -17,7 +17,7 @@ var PeliculaSchema = mongoose.Schema({
   annoEstreno:      Number,
   distribuidora:    String,
   director:         String,
-  actores:          [String],
+  actores:          String,
   edadMin:          Number
 });
 
