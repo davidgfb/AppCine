@@ -122,6 +122,20 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+function RenderThings(){
+  return (
+    <div>
+      <ManagerCard/>
+      <CardAddPelicula/>
+      <CardModPelicula/>
+      <CardDelPelicula/>
+      <CardDelSala/>
+      <CardModSala/>
+      <CardAddSala/>
+    </div>
+  )
+}
+
 export default function Dashboard(){
 
   const classes = useStyles();
@@ -186,17 +200,11 @@ export default function Dashboard(){
         <Divider />
         <List> {ClientList} </List>
       </Drawer>
+
+      {/* Contenido */}
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <div className={classes.widget}>
-          <ManagerCard/>
-          <CardAddPelicula/>
-          <CardModPelicula/>
-          <CardDelPelicula/>
-          <CardDelSala/>
-          <CardModSala/>
-          <CardAddSala/>
-        </div>
+        <RenderThings/>
       </main>
     </div>
   )
