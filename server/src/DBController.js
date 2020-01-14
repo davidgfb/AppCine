@@ -77,8 +77,121 @@ const DBController = {
       opiniones:      []
     })
     mongoose.connection.collection("clientes").insertOne(client);
-  },
 
+    var pelicula = new Pelicula({
+      _id:              new mongoose.Types.ObjectId(),
+      titulo:           "El oficial y el espía",
+      tituloOriginal:   "J'Accuse",
+      sinopsis:         "El capitán Alfred Dreyfus, un joven oficial judío, es degradado por espiar para Alemania
+                        y condenado a cadena perpetua en la isla del Diablo, en la Guayana Francesa. Entre los testigos
+                        que hacen posible esta humillación se encuentra el coronel Georges Picquart, encargado de
+                        liderar la unidad de contrainteligencia que descubrió al espía. Pero cuando Picquart se entera
+                        de que se siguen pasando secretos militares a los alemanes, se adentrará en un peligroso
+                        laberinto de mentiras y corrupción, poniendo en peligro su honor y su vida.",
+
+      pagOficual:       "https://www.filmaffinity.com/es/film269157.html",
+      genero:           "Drama | Histórico. Siglo XIX. Años 1900 (circa)",
+      duracion:         "126",
+      nacionalidad:     "Francia",
+      annoEstreno:      "2019",
+      distribuidora:    "Coproducción Francia-Italia; Gaumont / Légende Films / Canal+ / Eliseo Cinema / France 2 (FR 2) / France 3 (FR 3) / RAI Cinema",
+      director:         "ROMAN POLANSKI",
+      actores:          "Jean Dujardin, Louis Garrel, Emmanuelle Seigner, Grégory Gadebois, Hervé Pierre, Wladimir Yordanoff",
+      edadMin:          "12"
+      })
+      mongoose.connection.collection("pelicula").insertOne(pelicula);
+
+      var pelicula = new Pelicula({
+
+      _id:              new mongoose.Types.ObjectId(),
+      titulo:           "Pavaroti",
+      tituloOriginal:   "Pavarotti",
+      sinopsis:         "El director ganador del Oscar Ron Howard presenta a la audiencia la voz, el hombre, la leyenda:
+                        Luciano Pavarotti. Creada a partir de una combinación de personalísimas actuaciones de Pavarotti
+                        y el acceso a imágenes inéditas, la película proporciona al público un íntimo retrato del más querido
+                        cantante de ópera de todos los tiempos.",
+      pagOficual:       "https://www.filmaffinity.com/es/film519073.html",
+      genero:           "Documental | Biográfico. Documental sobre música",
+      duracion:         "114",
+      nacionalidad:     "Reino Unido",
+      annoEstreno:      "2020",
+      distribuidora:    "Coproducción Reino Unido-Estados Unidos; Imagine Entertainment / Polygram Filmed Entertainment / StudioCanal / White Horse Pictures",
+      director:         "RON HOWARD",
+      actores:          "Documentary, Luciano Pavarotti, Andrea Griminelli, Nicoletta Mantovani, Bono, Angela Gheorghiu, Carol Vaness, Lorenza Pavarotti, Giuliana Pavarotti",
+      edadMin:          "7"
+
+      })
+      mongoose.connection.collection("pelicula").insertOne(pelicula);
+
+      var pelicula = new Pelicula({
+
+      _id:              new mongoose.Types.ObjectId(),
+      titulo:           "El misterio del dragon",
+      tituloOriginal:   "The Mystery of the Dragon Seal",
+      sinopsis:         "El cartógrafo inglés Jonathan Green recibe la orden de crear un mapa de la lejana Rusia. En su largo viaje,
+                        Jonathan vivirá todo tipo de aventuras, desde enfrentamientos con extrañas criaturas y batallas con maestros
+                        en artes marciales hasta brujas milenarias ocultas en los rincones más recónditos de la legendaria China. Pero
+                        todas las pruebas parecerán un juego de niños cuando tenga que enfrentarse al mayor de los enemigos jamás creado
+                        por la magia negra: el gran Rey   de los Dragones.",
+      pagOficual:       "https://www.filmaffinity.com/es/film215051.html",
+      genero:           "Fantástico. Aventuras. Acción | Siglo XVIII. Secuela. 3-D",
+      duracion:         "120",
+      nacionalidad:     "China",
+      annoEstreno:      "2020",
+      distribuidora:    "Coproducción China-Rusia-Estados Unidos; Buffalo 8 Productions / Kinokompaniya CTB / China Film Group / China International Picture / Fetisoff Illusion",
+      director:         "OLEG STEPCHENKO",
+      actores:          "Jason Flemyng, Anna Yao, Anna Churina, Jackie Chan, Arnold Schwarzenegger, Rutger Hauer, Charles Dance, Paul Allica",
+      edadMin:          "12"
+
+      })
+      mongoose.connection.collection("pelicula").insertOne(pelicula);
+
+      var pelicula = new Pelicula({
+
+      _id:              new mongoose.Types.ObjectId(),
+      titulo:           "El faro",
+      tituloOriginal:   "The Lighthouse",
+      sinopsis:         "Robert Eggers nos trae la hipnótica y espectral historia de dos fareros (Willem Dafoe y Robert Pattinson)
+                        en una remota y misteriosa isla de la costa de Nueva Inglaterra a finales del siglo XIX. La película muestra
+                        la historia de dos fareros que, atrapados y aislados debido a una tormenta aparentemente sin fin, se enzarzan
+                        en una creciente escalada de enfrentamientos a medida que se fraguan tensiones entre ambos y unas misteriosas fuerzas, reales o imaginarias, parecen apoderarse de ellos.",
+
+      pagOficual:       "https://www.filmaffinity.com/es/film824461.html",
+      genero:           "Terror. Fantástico. Drama | Siglo XIX",
+      duracion:         "110",
+      nacionalidad:     "Estados Unidos",
+      annoEstreno:      "2019",
+      distribuidora:    "Coproducción Estados Unidos-Canadá; New Regency Pictures / RT Features. Distribuida por A24",
+      director:         "ROBERT EGGERS",
+      actores:          "Willem Dafoe, Robert Pattinson",
+      edadMin:          "16"
+
+      })
+      mongoose.connection.collection("pelicula").insertOne(pelicula);
+
+      var pelicula = new Pelicula({
+
+      _id:              new mongoose.Types.ObjectId(),
+      titulo:           "Joker",
+      tituloOriginal:   "Joker",
+      sinopsis:         "Protagonizada por Joaquin Phoenix como Arthur Fleck, la película explorará los orígenes del personaje, mostrando la historia de un hombre derribado por la sociedad que se convierte en el hombre que conocemos como el Joker.",
+      pagOficual:       "https://www.filmaffinity.com/es/film520214.html",
+      genero:           "Thriller. Drama | Crimen. DC Comics. Cómic. Payasos. Drama psicológico. Años 80",
+      duracion:         "121",
+      nacionalidad:     "Estados Unidos",
+      annoEstreno:      "2019"
+      distribuidora:    "DC Comics / DC Entertainment / Warner Bros. / Village Roadshow / Bron Studios / Creative Wealth Media Finance / 22 & Indiana Pictures. Distribuida por Warner Bros.",
+      director:         "TODD PHILLIPS",
+      actores:          "Joaquin Phoenix, Robert De Niro, Zazie Beetz, Frances Conroy, Brett Cullen, Bill Camp, Shea Whigham, Dante Pereira-Olson, Douglas Hodge, Jolie Chan",
+      edadMin:          "18"
+
+      })
+      mongoose.connection.collection("pelicula").insertOne(pelicula);
+
+
+
+
+}
 /*************************************************************
  *                 FUNCIONES - PELICULAS                     *
  *************************************************************/
