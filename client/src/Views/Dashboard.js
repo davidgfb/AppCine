@@ -129,15 +129,7 @@ function RenderThings(){
   return (
     <div>
       <ManagerCard/>
-      <CardDelCliente/>
-      <CardAddCliente/>
-      <CardModCliente/>
       <CardAddPelicula/>
-      <CardModPelicula/>
-      <CardDelPelicula/>
-      <CardDelSala/>
-      <CardModSala/>
-      <CardAddSala/>
     </div>
   )
 }

@@ -66,7 +66,8 @@ function saveHandler(){
       method: 'POST',
       body: JSON.stringify(data),
       headers:{
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       }
     }
   )
@@ -130,6 +131,7 @@ export default function CardAddPelicula(){
             <Grid item xs={12} sm={4}>
               <TextField
                 id="annoEstreno"
+                type="Number"
                 label="Año de estreno"
                 variant="outlined"
                 margin="auto"
@@ -140,6 +142,7 @@ export default function CardAddPelicula(){
             <Grid item xs={12} sm={4}>
               <TextField
                 id="duracion"
+                type="Number"
                 label="Duración (minutos)"
                 variant="outlined"
                 margin="auto"

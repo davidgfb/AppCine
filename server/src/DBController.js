@@ -46,8 +46,11 @@ const DBController = {
     );
 
     console.log("Eliminando base de datos...");
-    mongoose.connection.dropDatabase();
-
+    mongoose.connection.dropCollection("clientes").catch((err) => {console.error(err)});
+    mongoose.connection.dropCollection("entradas").catch((err) => {console.error(err)});
+    mongoose.connection.dropCollection("peliculas").catch((err) => {console.error(err)});
+    mongoose.connection.dropCollection("salas").catch((err) => {console.error(err)});
+    mongoose.connection.dropCollection("admins").catch((err) => {console.error(err)});
     console.log("[OK] - Base de datos eliminada.");
     console.log("Creando colecciones...");
     mongoose.connection.createCollection("clientes").catch((err) => {console.error(err)});

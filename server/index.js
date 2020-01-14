@@ -3,6 +3,7 @@
 // Módulos importados
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const DBController = require('./src/DBController');
 const Router = require('./src/Router');
 
@@ -19,6 +20,7 @@ if(process.argv[2] === "first"){
   DBController.initDB();
 }
 
+app.use(cors());
 
 // Indicamos que emplearemos el formato JSON
 app.use(bodyParser.json());
