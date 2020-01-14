@@ -10,6 +10,7 @@ var SalaSchema = mongoose.Schema({
   numSala:    Number,
   filas:      Number,
   columnas:   Number,
+  pases:      {type: [mongoose.Schema.Types.ObjectId], ref: 'Pelicula'}
 });
 
 module.exports = mongoose.model('Sala', SalaSchema);
