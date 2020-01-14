@@ -7,6 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
+
 const useStyles = makeStyles((theme) => ({
   card: {
     display: 'flex',
@@ -55,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CardPeliculaClient(props){
   const classes = useStyles();
+
   return(
     <Card className={classes.card}>
       <CardContent className={classes.cardContent}>

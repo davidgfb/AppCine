@@ -2,6 +2,9 @@ import React from 'react';
 import clsx from 'clsx'; // Gestionar clases de forma sencilla
 
 // Componentes
+import CardDelCliente from '../Components/CardDelCliente';
+import CardAddCliente from '../Components/CardAddCliente';
+import CardModCliente from '../Components/CardModCliente';
 import ManagerCard from '../Components/ManagerCard';
 import CardDelSala from '../Components/CardDelSala';
 import CardModSala from '../Components/CardModSala';
@@ -9,6 +12,7 @@ import CardAddSala from '../Components/CardAddSala';
 import CardDelPelicula from '../Components/CardDelPelicula';
 import CardModPelicula from '../Components/CardModPelicula';
 import CardAddPelicula from '../Components/CardAddPelicula';
+import CardPeliculaClient from '../Components/CardPeliculaClient';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
@@ -125,6 +129,9 @@ function RenderThings(){
   return (
     <div>
       <ManagerCard/>
+      <CardDelCliente/>
+      <CardAddCliente/>
+      <CardModCliente/>
       <CardAddPelicula/>
       <CardModPelicula/>
       <CardDelPelicula/>
