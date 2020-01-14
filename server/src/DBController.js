@@ -6,19 +6,11 @@ const mongoose = require('mongoose');
 const Pelicula = require('./models/Pelicula');
 const Entrada = require('./models/Entrada');
 const Sala = require('./models/Sala');
-const { Cliente, Opinion } = require('./models/Cliente');
+const Opinion = require('./models/Opinion');
+const Cliente = require('./models/Cliente');
+const Admin = require('./models/Admin');
 
 const DBController = {
-
-  // Modelos empleados por la base de datos
-  models: {
-    pelicula: Pelicula,
-    entrada: Entrada,
-    sala: Sala,
-    cliente: Cliente,
-    opinion: Opinion
-  },
-
 
   // Gestiona la conexión inicial del controlador con la
   // base de datos.
@@ -38,6 +30,55 @@ const DBController = {
     );
   },
 
+  firstInitDB: function(){
+
+    let dbRoute = "mongodb://localhost:27017/dbCine";
+    let db = mongoose.connect(
+      dbRoute,
+      {useNewUrlParser: true, useUnifiedTopology: true},
+      function(err){
+        if(err){
+          throw err;
+        }else{
+          console.log("[OK] - Conexión correcta a la base de datos.");
+        }
+      }
+    );
+
+    console.log("Eliminando base de datos...");
+    mongoose.connection.dropDatabase();
+
+    console.log("[OK] - Base de datos eliminada.");
+    console.log("Creando colecciones...");
+    mongoose.connection.createCollection("clientes").catch((err) => {console.error(err)});
+    mongoose.connection.createCollection("entradas").catch((err) => {console.error(err)});
+    mongoose.connection.createCollection("peliculas").catch((err) => {console.error(err)});
+    mongoose.connection.createCollection("salas").catch((err) => {console.error(err)});
+    mongoose.connection.createCollection("admins").catch((err) => {console.error(err)});
+    console.log("[OK] - Colecciones creada.");
+    console.log("Carga inicial de datos...");
+
+    // Creación del administrador
+    var admin = new Admin({
+      email: "admin@cinemanager.com",
+      password: "admin"
+    })
+    mongoose.connection.collection("admins").insertOne(admin);
+
+    var client = new Cliente({
+      _id:            new mongoose.Types.ObjectId(),
+      nombre:         "Alvaro",
+      apellidos:      "García Merino",
+      tlf:            636146931,
+      email:          "Alvaro97gm@gmail.com",
+      password:       "12345",
+      numTarjeta:     '1234 1234 1234 1234',
+      entradasID:     [],
+      opiniones:      []
+    })
+    mongoose.connection.collection("clientes").insertOne(client);
+  },
+
 /*************************************************************
  *                 FUNCIONES - PELICULAS                     *
  *************************************************************/
@@ -45,7 +86,7 @@ const DBController = {
   // Inserta una nueva película en la base de datos
   insertPelicula: function(req){
 
-    var newPelicula = new models.pelicula({
+    var newPelicula = new Pelicula({
 
       _id:              new mongoose.Types.ObjectId(),
       titulo:           req.body.titulo,
@@ -54,7 +95,7 @@ const DBController = {
       pagOficual:       req.body.pagOficial,
       genero:           req.body.genero,
       duracion:         req.body.duracion,
-      nacionalidad:     req.body.sinopsis,
+      nacionalidad:     req.body.nacionalidad,
       annoEstreno:      req.body.annoEstreno,
       distribuidora:    req.body.distribuidora,
       director:         req.body.director,

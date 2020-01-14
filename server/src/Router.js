@@ -9,6 +9,7 @@ const Router = express.Router();
 
 // Ruta API para insertar una pelicula nueva
 Router.post('/insertPelicula', function(req, res){
+  console.log(req.body);
   DBController.insertPelicula(req);
   //res.redirect('/');
 });

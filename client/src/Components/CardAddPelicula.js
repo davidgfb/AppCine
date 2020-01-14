@@ -44,6 +44,34 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
+function saveHandler(){
+
+  var data = {
+    titulo: document.getElementById("titulo").value,
+    tituloOriginal: document.getElementById("tituloOriginal").value,
+    sinopsis: document.getElementById("sinopsis").value,
+    pagOficial: document.getElementById("pagOficial").value,
+    genero: document.getElementById("genero").value,
+    duracion: document.getElementById("duracion").value,
+    nacionalidad: document.getElementById("nacionalidad").value,
+    annoEstreno: document.getElementById("annoEstreno").value,
+    distribuidora: document.getElementById("distribuidora").value,
+    director: document.getElementById("director").value,
+    actores: document.getElementById("actores").value,
+    edadMin: document.getElementById("edadMin").value
+  }
+
+  fetch('http://localhost:3001/api/insertPelicula',
+    {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    }
+  )
+}
+
 export default function CardAddPelicula(){
   const classes = useStyles();
   return(
@@ -58,6 +86,7 @@ export default function CardAddPelicula(){
 
             <Grid item xs={12} sm={4}>
               <TextField
+                id="titulo"
                 label="Título"
                 variant="outlined"
                 margin="auto"
@@ -65,6 +94,7 @@ export default function CardAddPelicula(){
             </Grid>
             <Grid item xs={12} sm={4}>
               <TextField
+                id="tituloOriginal"
                 label="Título original"
                 variant="outlined"
                 margin="auto"
@@ -72,6 +102,7 @@ export default function CardAddPelicula(){
             </Grid>
             <Grid item xs={12} sm={4}>
               <TextField
+                id="pagOficial"
                 type="url"
                 label="Página oficial"
                 variant="outlined"
@@ -80,6 +111,7 @@ export default function CardAddPelicula(){
             </Grid>
             <Grid item xs={12}>
               <TextField
+                id="sinopsis"
                 label="Sinopsis"
                 variant="outlined"
                 margin="auto"
@@ -89,6 +121,7 @@ export default function CardAddPelicula(){
             </Grid>
             <Grid item xs={12} sm={4}>
               <TextField
+                id="genero"
                 label="Género"
                 variant="outlined"
                 margin="auto"
@@ -96,6 +129,7 @@ export default function CardAddPelicula(){
             </Grid>
             <Grid item xs={12} sm={4}>
               <TextField
+                id="annoEstreno"
                 label="Año de estreno"
                 variant="outlined"
                 margin="auto"
@@ -105,6 +139,7 @@ export default function CardAddPelicula(){
             </Grid>
             <Grid item xs={12} sm={4}>
               <TextField
+                id="duracion"
                 label="Duración (minutos)"
                 variant="outlined"
                 margin="auto"
@@ -114,6 +149,7 @@ export default function CardAddPelicula(){
             </Grid>
             <Grid item xs={12} sm={4}>
               <TextField
+                id="distribuidora"
                 label="Distribuidora"
                 variant="outlined"
                 margin="auto"
@@ -121,6 +157,7 @@ export default function CardAddPelicula(){
             </Grid>
             <Grid item xs={12} sm={4}>
               <TextField
+                id="nacionalidad"
                 label="Nacionalidad"
                 variant="outlined"
                 margin="auto"
@@ -128,6 +165,7 @@ export default function CardAddPelicula(){
             </Grid>
             <Grid item xs={12} sm={4}>
               <TextField
+                id="director"
                 label="Director"
                 variant="outlined"
                 margin="auto"
@@ -136,6 +174,7 @@ export default function CardAddPelicula(){
             <Grid item container spacing={2}>
               <Grid item xs={12} sm={8}>
                 <TextField
+                  id="actores"
                   label="Actores"
                   variant="outlined"
                   margin="auto"
@@ -144,6 +183,7 @@ export default function CardAddPelicula(){
 
               <Grid item xs={12} sm={4}>
                 <TextField
+                  id="edadMin"
                   label="Edad mínima"
                   type="Number"
                   variant="outlined"
@@ -158,7 +198,8 @@ export default function CardAddPelicula(){
         <Button
           variant='contained'
           color='primary'
-          size='large'>
+          size='large'
+          onClick={saveHandler}>
           GUARDAR
         </Button>
       </CardActions>

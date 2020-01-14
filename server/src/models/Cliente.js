@@ -3,14 +3,6 @@
 // Módulos importados
 const mongoose =  require('mongoose');
 
-// Esquema necesario para almacenar las opiniones de los clientes
-var OpinionSchema = mongoose.Schema({
-
-  idPelicula:   mongoose.Schema.Types.ObjectId,
-  opinion:      String,
-  puntuacion:   Number
-});
-
 // Creamos el objeto del esquema y sus atributos
 var ClienteSchema = mongoose.Schema({
 
@@ -21,13 +13,9 @@ var ClienteSchema = mongoose.Schema({
   email:          String,
   password:       String,
   numTarjeta:     String,
-  entradasID:     [mongoose.Schema.Types.ObjectId],
-  opiniones:      [OpinionSchema]
+  entradasID:     {type: [mongoose.Schema.Types.ObjectId], ref: 'Entrada'},
+  opiniones:      {type: [mongoose.Schema.Types.ObjectId], ref: 'Opinion'}
 });
 
-var modelCliente = mongoose.model('Cliente', ClienteSchema);
-var modelOpinion = mongoose.model('Opinion', OpinionSchema);
-module.exports = {
-  modelCliente,
-  modelOpinion
-};
+const Cliente = mongoose.model('Cliente', ClienteSchema);
+module.exports = Cliente;

@@ -100,7 +100,6 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    // width: theme.spacing(7),
     [theme.breakpoints.up('sm')]: {
       variant: 'persistent',
       width: theme.spacing(9),

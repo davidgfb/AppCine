@@ -10,8 +10,15 @@ const Router = require('./src/Router');
 const app = express();
 const API_PORT = 3001;
 
-// Se inicia la conexión a la base de datos
-DBController.initDB();
+if(process.argv[2] === "first"){
+  // Se eliminan los datos de la base de datos, se crean
+  // de nuevo las colecciones y se añaden los datos inciales
+  DBController.firstInitDB();
+}else{
+  // Se inicia la conexión a la base de datos
+  DBController.initDB();
+}
+
 
 // Indicamos que emplearemos el formato JSON
 app.use(bodyParser.json());
