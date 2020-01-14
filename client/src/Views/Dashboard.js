@@ -9,6 +9,7 @@ import ManagerCard from '../Components/ManagerCard';
 import CardDelSala from '../Components/CardDelSala';
 import CardModSala from '../Components/CardModSala';
 import CardAddSala from '../Components/CardAddSala';
+import CardAddEntrada from '../Components/CardAddEntrada';
 import CardDelPelicula from '../Components/CardDelPelicula';
 import CardModPelicula from '../Components/CardModPelicula';
 import CardAddPelicula from '../Components/CardAddPelicula';
@@ -129,15 +130,7 @@ function RenderThings(){
   return (
     <div>
       <ManagerCard/>
-      <CardDelCliente/>
-      <CardAddCliente/>
-      <CardModCliente/>
-      <CardAddPelicula/>
-      <CardModPelicula/>
-      <CardDelPelicula/>
-      <CardDelSala/>
-      <CardModSala/>
-      <CardAddSala/>
+      <CardAddEntrada/>
     </div>
   )
 }
@@ -174,7 +167,7 @@ export default function Dashboard(){
             <MenuIcon />
           </IconButton>
           <div className={classes.branding}>
-            <VoiceChatIcon color="info" className={classes.logo}/>
+            <VoiceChatIcon className={classes.logo}/>
             <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
               CineManager
             </Typography>
