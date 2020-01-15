@@ -230,22 +230,28 @@ const DBController = {
 
 
   // Inserta una nueva sala en la base de datos
-  insertSala: function(req){
+  insertSala: async function(req){
+
+    if(await Sala.exists({numSala: req.body.numSala}) || req.body.numSala === ''){
+      return -1
+    }
 
     var newSala = new Sala({
-      _id:           new mongoose.Types.ObjectId(),
-      numSala:       req.body.numSala,
-      filas:         req.body.filas,
-      columnas:      req.body.columnas,
+        _id:           new mongoose.Types.ObjectId(),
+        numSala:       req.body.numSala,
+        filas:         req.body.filas,
+        columnas:      req.body.columnas,
     });
 
     newSala.save()
-           .then(doc => {
+            .then(doc => {
              console.log(doc);
-           })
-           .catch(err => {
+            })
+            .catch(err => {
              console.error(err);
-           })
+            })
+
+      return 0;
   },
 
 
@@ -254,11 +260,14 @@ const DBController = {
   delSala: function(req){
 
     Sala.deleteOne(
-      {numSala: req.body.numSala},
+      {_id: req.body.id},
       function(err){
-        if(err) return console.error(err);
+        if(err){
+          return console.error(err);
+          return -1
+        }
       }
-    );
+    ).then(() => {return 0});
   },
 
   // Modifica los campos de una sala (determinada por su ID)
@@ -308,11 +317,21 @@ const DBController = {
 
   // Devuelve todas las salas presentes en la
   // base de datos
-  getAllSalas: function(){
-    Sala.find({},function(err, salas){
-      if(err) return console.error(err);
-      return salas;
-    });
+  getAllSalas: function(req, res){
+
+    var salasData = [];
+    Sala.find({}).then(
+      function(salas, err){
+        if(err) return console.error(err);
+        salas.forEach(function(sala){
+          salasData.push({
+            _id: sala._id,
+            numSala: sala.numSala
+          });
+        });
+
+        res.json(salasData);
+      });
   },
 /******************* FIN FUNCIONES SALAS *********************/
 
@@ -374,7 +393,7 @@ const DBController = {
 
   // Devuelve todas las entradas presentes en la
   // base de datos
-  getAllEntradas: function(){
+  getAllEntradas: function(req, res){
     Entrada.find({},function(err, entradas){
       if(err) return console.error(err);
       return entradas;

@@ -202,7 +202,9 @@ export default function Dashboard(){
       {/* Contenido */}
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <RenderThings/>
+        <div id="mainContent">
+          <ManagerCard/>
+        </div>
       </main>
     </div>
   )

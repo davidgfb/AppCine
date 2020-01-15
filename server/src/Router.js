@@ -9,7 +9,6 @@ const Router = express.Router();
 
 // Ruta API para insertar una pelicula nueva
 Router.post('/insertPelicula', function(req, res){
-  console.log(req.body);
   DBController.insertPelicula(req);
   res.send('ok');
 });
@@ -24,13 +23,27 @@ Router.get('/allPeliculas',async function(req, res){
 });
 
 // Ruta API para insertar una sala nueva
-Router.post('/insertSala', function(req, res){
-  DBController.insertSala(req);
+Router.post('/insertSala',async function(req, res){
+  var status = await DBController.insertSala(req);
+  if(status == -1){
+    res.status("201").send("Numero de sala existente");
+  }else{
+    res.send('ok');
+  }
 });
 
 // Ruta API para eliminar una sala
-Router.post('/delSala', function(req, res){
-  DBController.delSala(req);
+Router.post('/delSala', async function(req, res){
+  var status = await DBController.delSala(req);
+  if(status == -1){
+    res.status("201").send("Numero de sala existente");
+  }else{
+    res.send('ok');
+  }
+});
+
+Router.get('/allSalas',async function(req, res){
+    DBController.getAllSalas(req, res);
 });
 
 // Ruta API para insertar una entrada nueva

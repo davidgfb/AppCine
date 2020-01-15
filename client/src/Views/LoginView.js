@@ -116,8 +116,7 @@ export default function LoginView(){
                     <RegisterView/>,
                     document.getElementById("root")
                   )
-                }}
-              >
+                }}>
                 {"¿No tienes cuenta? Registrate"}
               </Link>
             </form>

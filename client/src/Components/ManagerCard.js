@@ -1,4 +1,11 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import CardDelSala from '../Components/CardDelSala';
+import CardModSala from '../Components/CardModSala';
+import CardAddSala from '../Components/CardAddSala';
+import CardDelPelicula from '../Components/CardDelPelicula';
+import CardModPelicula from '../Components/CardModPelicula';
+import CardAddPelicula from './CardAddPelicula';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
@@ -67,7 +74,13 @@ export default function CardPeliculaClient(props){
             color='primary'
             size='medium'
             className={classes.boton}
-            fullWidth>
+            fullWidth
+            onClick={() => {
+              ReactDOM.render(
+                <CardAddPelicula/>,
+                document.getElementById("mainContent")
+              );
+            }}>
             Añadir película
           </Button>
           <Button
@@ -75,7 +88,13 @@ export default function CardPeliculaClient(props){
             color='primary'
             size='medium'
             className={classes.boton}
-            fullWidth>
+            fullWidth
+            onClick={() => {
+              ReactDOM.render(
+                <CardModPelicula/>,
+                document.getElementById("mainContent")
+              );
+            }}>
             Modificar película
           </Button>
           <Button
@@ -83,7 +102,13 @@ export default function CardPeliculaClient(props){
             color='primary'
             size='medium'
             className={classes.boton}
-            fullWidth>
+            fullWidth
+            onClick={() => {
+              ReactDOM.render(
+                <CardDelPelicula/>,
+                document.getElementById("mainContent")
+              );
+            }}>
             Eliminar película
           </Button>
           <Button
@@ -105,7 +130,13 @@ export default function CardPeliculaClient(props){
             color='primary'
             size='medium'
             className={classes.boton}
-            fullWidth>
+            fullWidth
+            onClick={() => {
+              ReactDOM.render(
+                <CardAddSala/>,
+                document.getElementById("mainContent")
+              );
+            }}>
             Añadir sala
           </Button>
           <Button
@@ -113,7 +144,13 @@ export default function CardPeliculaClient(props){
             color='primary'
             size='medium'
             className={classes.boton}
-            fullWidth>
+            fullWidth
+            onClick={() => {
+              ReactDOM.render(
+                <CardModSala/>,
+                document.getElementById("mainContent")
+              );
+            }}>
             Modificar sala
           </Button>
           <Button
@@ -121,7 +158,13 @@ export default function CardPeliculaClient(props){
             color='primary'
             size='medium'
             className={classes.boton}
-            fullWidth>
+            fullWidth
+            onClick={() => {
+              ReactDOM.render(
+                <CardDelSala/>,
+                document.getElementById("mainContent")
+              );
+            }}>
             Eliminar sala
           </Button>
           <Button

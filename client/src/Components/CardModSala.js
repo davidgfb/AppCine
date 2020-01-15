@@ -16,11 +16,10 @@ const useStyles = makeStyles((theme) => ({
   card: {
     display: 'flex',
     flexDirection: 'column',
-    minWidth: '20%',
+    minWidth: '25%',
     maxWidth: '25%',
     margin: theme.spacing(2),
     padding: theme.spacing(2),
-    paddingTop: 0,
     [theme.breakpoints.down('xs')]: {
       minWidth: '85%',
       maxHeight: 'none'
@@ -67,7 +66,6 @@ export default function CardAddPelicula(){
           </InputLabel>
           <Select
             labelId="label-select-sala"
-            margin="auto"
             fullWidth>
             {/*onChange={handleChange}*/}
             <MenuItem value=""> </MenuItem>
@@ -82,21 +80,18 @@ export default function CardAddPelicula(){
           type="Number"
           label="Número de sala"
           variant="outlined"
-          margin="auto"
           fullWidth
           className={classes.inputInfo}/>
         <TextField
           type="Number"
           label="Número de filas"
           variant="outlined"
-          margin="auto"
           fullWidth
           className={classes.inputInfo}/>
         <TextField
           type="Number"
           label="Numero de columnas"
           variant="outlined"
-          margin="auto"
           fullWidth
           className={classes.inputInfo}/>
       </CardContent>

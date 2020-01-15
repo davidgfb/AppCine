@@ -70,12 +70,11 @@ export default function CardInsertPelicula(){
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <FormControl fullWidth>
-              <InputLabel id="label-select-peli">
+              <InputLabel id="label-select-peli-mod">
                 Seleccionar película
               </InputLabel>
               <Select
-                labelId="label-select-peli"
-                margin="auto"
+                labelId="label-select-peli-mod"
                 fullWidth>
                 {/*onChange={handleChange}*/}
                 <MenuItem value=""></MenuItem>
@@ -110,14 +109,12 @@ export default function CardInsertPelicula(){
               <TextField
                 label="Título"
                 variant="outlined"
-                margin="auto"
                 fullWidth/>
             </Grid>
             <Grid item xs={12} md={3}>
               <TextField
                 label="Título original"
                 variant="outlined"
-                margin="auto"
                 fullWidth/>
             </Grid>
             <Grid item xs={12} md={3}>
@@ -125,21 +122,18 @@ export default function CardInsertPelicula(){
                 type="url"
                 label="Página oficial"
                 variant="outlined"
-                margin="auto"
                 fullWidth/>
             </Grid>
             <Grid item xs={12} md={3}>
               <TextField
                 label="Género"
                 variant="outlined"
-                margin="auto"
                 fullWidth/>
             </Grid>
             <Grid item xs={12} md={6}>
               <TextField
                 label="Sinopsis"
                 variant="outlined"
-                margin="auto"
                 rows={5}
                 multiline
                 fullWidth/>
@@ -149,7 +143,7 @@ export default function CardInsertPelicula(){
                 <TextField
                   label="Año de estreno"
                   variant="outlined"
-                  margin="auto"
+
                   min={1900}
                   max={new Date().getFullYear()}
                   fullWidth/>
@@ -158,7 +152,6 @@ export default function CardInsertPelicula(){
                 <TextField
                   label="Duración (minutos)"
                   variant="outlined"
-                  margin="auto"
                   min={0}
                   max={500}
                   fullWidth/>
@@ -167,21 +160,19 @@ export default function CardInsertPelicula(){
                 <TextField
                   label="Distribuidora"
                   variant="outlined"
-                  margin="auto"
+
                   fullWidth/>
               </Grid>
               <Grid item xs={12} md={6}>
                 <TextField
                   label="Nacionalidad"
                   variant="outlined"
-                  margin="auto"
                   fullWidth/>
               </Grid>
               <Grid item xs={12} md={6}>
                 <TextField
                   label="Director"
                   variant="outlined"
-                  margin="auto"
                   fullWidth/>
               </Grid>
             </Grid>
@@ -189,7 +180,6 @@ export default function CardInsertPelicula(){
                 <TextField
                   label="Actores"
                   variant="outlined"
-                  margin="auto"
                   fullWidth/>
               </Grid>
               <Grid item xs={12} sm={4}>
@@ -197,7 +187,6 @@ export default function CardInsertPelicula(){
                   label="Edad mínima"
                   type="Number"
                   variant="outlined"
-                  margin="auto"
                   fullWidth/>
               </Grid>
           </Grid>

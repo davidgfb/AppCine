@@ -1,7 +1,20 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+
+import CardDelCliente from '../Components/CardDelCliente';
+import CardAddCliente from '../Components/CardAddCliente';
+import CardModCliente from '../Components/CardModCliente';
+import ManagerCard from '../Components/ManagerCard';
+import CardDelSala from '../Components/CardDelSala';
+import CardModSala from '../Components/CardModSala';
+import CardAddSala from '../Components/CardAddSala';
+import CardDelPelicula from '../Components/CardDelPelicula';
+import CardModPelicula from '../Components/CardModPelicula';
+import CardAddPelicula from '../Components/CardAddPelicula';
+import CardPeliculaClient from '../Components/CardPeliculaClient';
 
 // Iconos
 import DashboardIcon from '@material-ui/icons/Dashboard';
@@ -14,36 +27,70 @@ import PersonIcon from '@material-ui/icons/Person';
 
 export const AdminList = (
   <div>
-    <ListItem button>
+
+    {/* MANAGER DASHBOARD INICIO */}
+    <ListItem button onClick={() => {
+      ReactDOM.render(
+        <ManagerCard/>,
+        document.getElementById("mainContent")
+      )}}>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Inicio"/>
     </ListItem>
-    <ListItem button>
+
+    {/* MANAGER DASHBOARD PELICULAS */}
+    <ListItem button onClick={() => {
+      ReactDOM.render(
+        <div>
+          <CardAddPelicula/>
+          <CardModPelicula/>
+          <CardDelPelicula/>
+        </div>,
+        document.getElementById("mainContent")
+      )
+    }}>
       <ListItemIcon>
         <VideocamIcon />
       </ListItemIcon>
       <ListItemText primary="Peliculas"/>
     </ListItem>
+
+    {/* MANAGER DASHBOARD ENTRADAS */}
     <ListItem button>
       <ListItemIcon>
         <ConfirmationNumberIcon/>
       </ListItemIcon>
       <ListItemText primary="Entradas"/>
     </ListItem>
-    <ListItem button>
+
+    {/* MANAGER DASHBOARD SALAS */}
+    <ListItem button onClick={() => {
+      ReactDOM.render(
+        <div id="salaManager" style={{display: 'flex', flexDirection: 'row'}}>
+          <CardAddSala/>
+          <CardModSala/>
+          <CardDelSala/>
+        </div>,
+        document.getElementById("mainContent")
+      )
+    }}>
       <ListItemIcon>
         <LooksOneIcon />
       </ListItemIcon>
       <ListItemText primary="Salas"/>
     </ListItem>
+
+    {/* MANAGER DASHBOARD OPINIONES */}
     <ListItem button>
       <ListItemIcon>
         <ThumbsUpDownIcon />
       </ListItemIcon>
       <ListItemText primary="Opiniones"/>
     </ListItem>
+
+    {/* MANAGER DASHBOARD CLIENTES */}
     <ListItem button>
       <ListItemIcon>
         <PeopleIcon/>
