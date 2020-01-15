@@ -11,12 +11,16 @@ const Router = express.Router();
 Router.post('/insertPelicula', function(req, res){
   console.log(req.body);
   DBController.insertPelicula(req);
-  //res.redirect('/');
+  res.send('ok');
 });
 
 // Ruta API para eliminar una pelicula
 Router.post('/delPelicula', function(req, res){
   DBController.delPelicula(req);
+});
+
+Router.get('/allPeliculas',async function(req, res){
+  DBController.getAllPeliculas(req, res);
 });
 
 // Ruta API para insertar una sala nueva

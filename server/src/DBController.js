@@ -82,6 +82,28 @@ const DBController = {
     mongoose.connection.collection("clientes").insertOne(client);
   },
 
+  auth: function(req){
+    var isAdmin = Admin.findOne({'email': req.body.email});
+    if(isAdmin){
+      if(isAdmin.password === req.body.password){
+        // Es administrador
+      }else{
+        // No coincide la contraseña
+      }
+    // No es administrador
+    }else{
+      var user = Cliente.findOne({'email': req.body.email});
+      if(user){
+        if(isAdmin.password === req.body.password){
+          // Es usuario
+        }else{
+          // No coincide la contraseña
+          // ¿Registro?
+        }
+      }
+    }
+  },
+
 /*************************************************************
  *                 FUNCIONES - PELICULAS                     *
  *************************************************************/
@@ -120,7 +142,7 @@ const DBController = {
   // base de datos
   delPelicula: function(req){
 
-    models.pelicula.deleteOne(
+    Pelicula.deleteOne(
       {"_id": req.body.id},
       function(err){
         if(err) return console.error(err);
@@ -132,7 +154,7 @@ const DBController = {
   // Solo sustituye los datos que no coincidan con los previos
   modPelicula: function(req){
 
-    models.pelicula.findById(
+    Pelicula.findById(
       req.body.id,
       function(err, pelicula){
         if(err) return console.error(err);
@@ -165,7 +187,7 @@ const DBController = {
   // indicado en la petición tenga una coincidencia
   queryPelicula: function(req){
 
-    models.pelicula.findById(
+    Pelicula.findById(
       req.body.id,
       function(err, pelicula){
         if(err) return console.error(err);
@@ -183,11 +205,21 @@ const DBController = {
 
   // Devuelve todas las peliculas presentes en la
   // base de datos
-  getAllPeliculas: function(){
-    models.pelicula.find({},function(err, peliculas){
-      if(err) return console.error(err);
-      return peliculas;
-    });
+  getAllPeliculas: function(req, res){
+
+    var pelisData = [];
+    Pelicula.find({}).then(
+      function(peliculas, err){
+        if(err) return console.error(err);
+        peliculas.forEach(function(pelicula){
+          pelisData.push({
+            _id: pelicula._id,
+            titulo: pelicula.titulo
+          });
+        });
+        console.log(pelisData);
+        res.json(pelisData);
+      });
   },
 /***************** FIN FUNCIONES PELICULAS *******************/
 
@@ -200,7 +232,7 @@ const DBController = {
   // Inserta una nueva sala en la base de datos
   insertSala: function(req){
 
-    var newSala = new models.sala({
+    var newSala = new Sala({
       _id:           new mongoose.Types.ObjectId(),
       numSala:       req.body.numSala,
       filas:         req.body.filas,
@@ -221,7 +253,7 @@ const DBController = {
   // de la base de datos
   delSala: function(req){
 
-    models.sala.deleteOne(
+    Sala.deleteOne(
       {numSala: req.body.numSala},
       function(err){
         if(err) return console.error(err);
@@ -233,13 +265,13 @@ const DBController = {
   // Solo sustituye los datos que no coincidan con los previos
   modSala: function(req){
 
-    models.sala.findById(
+    Sala.findById(
       req.body.id,
       function(err, sala){
         if(err) return console.error(err);
 
         if(req.body.numSala != sala.numSala){
-          if(models.sala.exists({numSala: req.body.numSala})){
+          if(Sala.exists({numSala: req.body.numSala})){
             return console.error("El número de sala ya está en uso");
           }
         }else{
@@ -264,7 +296,7 @@ const DBController = {
   // con el indicado en la petición
   querySala: function(req){
 
-    models.sala.findOne(
+    Sala.findOne(
       { numSala: req.body.numSala},
       function(err, sala){
         if(err) return console.error(err);
@@ -277,7 +309,7 @@ const DBController = {
   // Devuelve todas las salas presentes en la
   // base de datos
   getAllSalas: function(){
-    models.sala.find({},function(err, salas){
+    Sala.find({},function(err, salas){
       if(err) return console.error(err);
       return salas;
     });
@@ -297,7 +329,7 @@ const DBController = {
   // Inserta una nueva entrada en la base de datos
   insertEntrada: function(req){
 
-    var newEntrada = new models.entrada({
+    var newEntrada = new Entrada({
 
       _id:            new mongoose.Types.ObjectId(),
       fecha: {
@@ -329,7 +361,7 @@ const DBController = {
   // la base de datos
   delEntrada: function(req){
 
-    models.entrada.deleteOne(
+    Entrada.deleteOne(
       {"_id": req.body.id},
       function(err){
         if(err) return console.error(err);
@@ -343,7 +375,7 @@ const DBController = {
   // Devuelve todas las entradas presentes en la
   // base de datos
   getAllEntradas: function(){
-    models.entrada.find({},function(err, entradas){
+    Entrada.find({},function(err, entradas){
       if(err) return console.error(err);
       return entradas;
     });
@@ -358,7 +390,7 @@ const DBController = {
   // Inserta un nuevo cliente en la base de datos
   insertCliente: function(req){
 
-    var newCliente = new models.cliente({
+    var newCliente = new Cliente({
 
       _id:            new mongoose.Types.ObjectId(),
       nombre:         req.body.nombre,
@@ -384,7 +416,7 @@ const DBController = {
   // la base de datos
   delCliente: function(req){
 
-    models.cliente.deleteOne(
+    Cliente.deleteOne(
       {"_id": req.body.id},
       function(err){
         if(err) return console.error(err);
@@ -396,7 +428,7 @@ const DBController = {
   // Solo sustituye los datos que no coincidan con los previos
   modCliente: function(req){
 
-    models.cliente.findById(
+    Cliente.findById(
       req.body.id,
       function(err, cliente){
         if(err) return console.error(err);
@@ -429,7 +461,7 @@ const DBController = {
   // Devuelve todos los clientes presentes en la
   // base de datos
   getAllClientes: function(){
-    models.cliente.find({},function(err, clientes){
+    Cliente.find({},function(err, clientes){
       if(err) return console.error(err);
       return clientes;
     });

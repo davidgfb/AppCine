@@ -61,8 +61,7 @@ function saveHandler(){
     edadMin: document.getElementById("edadMin").value
   }
 
-  fetch('http://localhost:3001/api/insertPelicula',
-    {
+  fetch('http://localhost:3001/api/insertPelicula',{
       method: 'POST',
       body: JSON.stringify(data),
       headers:{
@@ -70,8 +69,10 @@ function saveHandler(){
         'Access-Control-Allow-Origin': '*'
       }
     }
-  )
-}
+  ).catch((err) => {
+    console.error(err);
+  })
+};
 
 export default function CardAddPelicula(){
   const classes = useStyles();
@@ -84,22 +85,21 @@ export default function CardAddPelicula(){
         <Divider className={classes.divider}/>
         <form>
           <Grid container spacing={2}>
-
             <Grid item xs={12} sm={4}>
               <TextField
                 id="titulo"
                 label="Título"
                 variant="outlined"
-                margin="auto"
-                fullWidth/>
+                fullWidth
+                required/>
             </Grid>
             <Grid item xs={12} sm={4}>
               <TextField
                 id="tituloOriginal"
                 label="Título original"
                 variant="outlined"
-                margin="auto"
-                fullWidth/>
+                fullWidth
+                required/>
             </Grid>
             <Grid item xs={12} sm={4}>
               <TextField
@@ -107,26 +107,26 @@ export default function CardAddPelicula(){
                 type="url"
                 label="Página oficial"
                 variant="outlined"
-                margin="auto"
-                fullWidth/>
+                fullWidth
+                required/>
             </Grid>
             <Grid item xs={12}>
               <TextField
                 id="sinopsis"
                 label="Sinopsis"
                 variant="outlined"
-                margin="auto"
                 rows={4}
                 multiline
-                fullWidth/>
+                fullWidth
+                required/>
             </Grid>
             <Grid item xs={12} sm={4}>
               <TextField
                 id="genero"
                 label="Género"
                 variant="outlined"
-                margin="auto"
-                fullWidth/>
+                fullWidth
+                required/>
             </Grid>
             <Grid item xs={12} sm={4}>
               <TextField
@@ -134,10 +134,10 @@ export default function CardAddPelicula(){
                 type="Number"
                 label="Año de estreno"
                 variant="outlined"
-                margin="auto"
                 min={1900}
                 max={new Date().getFullYear()}
-                fullWidth/>
+                fullWidth
+                required/>
             </Grid>
             <Grid item xs={12} sm={4}>
               <TextField
@@ -145,34 +145,34 @@ export default function CardAddPelicula(){
                 type="Number"
                 label="Duración (minutos)"
                 variant="outlined"
-                margin="auto"
                 min={0}
                 max={500}
-                fullWidth/>
+                fullWidth
+                required/>
             </Grid>
             <Grid item xs={12} sm={4}>
               <TextField
                 id="distribuidora"
                 label="Distribuidora"
                 variant="outlined"
-                margin="auto"
-                fullWidth/>
+                fullWidth
+                required/>
             </Grid>
             <Grid item xs={12} sm={4}>
               <TextField
                 id="nacionalidad"
                 label="Nacionalidad"
                 variant="outlined"
-                margin="auto"
-                fullWidth/>
+                fullWidth
+                required/>
             </Grid>
             <Grid item xs={12} sm={4}>
               <TextField
                 id="director"
                 label="Director"
                 variant="outlined"
-                margin="auto"
-                fullWidth/>
+                fullWidth
+                required/>
             </Grid>
             <Grid item container spacing={2}>
               <Grid item xs={12} sm={8}>
@@ -180,8 +180,8 @@ export default function CardAddPelicula(){
                   id="actores"
                   label="Actores"
                   variant="outlined"
-                  margin="auto"
-                  fullWidth/>
+                  fullWidth
+                  required/>
               </Grid>
 
               <Grid item xs={12} sm={4}>
@@ -190,8 +190,8 @@ export default function CardAddPelicula(){
                   label="Edad mínima"
                   type="Number"
                   variant="outlined"
-                  margin="auto"
-                  fullWidth/>
+                  fullWidth
+                  required/>
               </Grid>
             </Grid>
           </Grid>

@@ -12,7 +12,6 @@ import CardAddSala from '../Components/CardAddSala';
 import CardDelPelicula from '../Components/CardDelPelicula';
 import CardModPelicula from '../Components/CardModPelicula';
 import CardAddPelicula from '../Components/CardAddPelicula';
-import CardPeliculaClient from '../Components/CardPeliculaClient';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
@@ -129,6 +128,7 @@ function RenderThings(){
   return (
     <div>
       <ManagerCard/>
+      <CardDelPelicula/>
       <CardAddPelicula/>
     </div>
   )
@@ -166,7 +166,7 @@ export default function Dashboard(){
             <MenuIcon />
           </IconButton>
           <div className={classes.branding}>
-            <VoiceChatIcon color="info" className={classes.logo}/>
+            <VoiceChatIcon className={classes.logo}/>
             <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
               CineManager
             </Typography>
