@@ -4,6 +4,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
+import CardAddEntrada from '../Components/CardAddEntrada';
 import CardDelCliente from '../Components/CardDelCliente';
 import CardAddCliente from '../Components/CardAddCliente';
 import CardModCliente from '../Components/CardModCliente';
@@ -58,7 +59,14 @@ export const AdminList = (
     </ListItem>
 
     {/* MANAGER DASHBOARD ENTRADAS */}
-    <ListItem button>
+    <ListItem button  onClick={() => {
+      ReactDOM.render(
+        <div>
+          <CardAddEntrada/>
+        </div>,
+        document.getElementById("mainContent")
+      )
+    }}>
       <ListItemIcon>
         <ConfirmationNumberIcon/>
       </ListItemIcon>
@@ -68,7 +76,7 @@ export const AdminList = (
     {/* MANAGER DASHBOARD SALAS */}
     <ListItem button onClick={() => {
       ReactDOM.render(
-        <div id="salaManager" style={{display: 'flex', flexDirection: 'row'}}>
+        <div>
           <CardAddSala/>
           <CardModSala/>
           <CardDelSala/>
@@ -91,7 +99,16 @@ export const AdminList = (
     </ListItem>
 
     {/* MANAGER DASHBOARD CLIENTES */}
-    <ListItem button>
+    <ListItem button onClick={() => {
+      ReactDOM.render(
+        <div>
+          <CardAddCliente/>
+          <CardModCliente/>
+          <CardDelCliente/>
+        </div>,
+        document.getElementById("mainContent")
+      )
+    }}>
       <ListItemIcon>
         <PeopleIcon/>
       </ListItemIcon>

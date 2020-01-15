@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme) => ({
   card: {
     display: 'flex',
     flexDirection: 'column',
-    minWidth: '50%',
-    maxWidth: '50%',
+    minWidth: '95%',
+    maxWidth: '95%',
     margin: theme.spacing(2),
     padding: theme.spacing(2),
     paddingTop: 0,
@@ -58,7 +58,7 @@ export default function CardAddCliente(){
     <Card className={classes.card}>
       <CardContent className={classes.cardContent}>
         <Typography className={classes.title}>
-          Añadir cliente
+          Modificar cliente
         </Typography>
         <Divider className={classes.divider}/>
         <form>

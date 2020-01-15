@@ -16,8 +16,8 @@ const useStyles = makeStyles((theme) => ({
   card: {
     display: 'flex',
     flexDirection: 'column',
-    minWidth: '25%',
-    maxWidth: '25%',
+    minWidth: '95%',
+    maxWidth: '95%',
     margin: theme.spacing(2),
     padding: theme.spacing(2),
     [theme.breakpoints.down('xs')]: {

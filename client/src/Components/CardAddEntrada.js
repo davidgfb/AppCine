@@ -9,6 +9,15 @@ import TextField from '@material-ui/core/TextField';
 import MuiAlert from '@material-ui/lab/Alert';
 import PropTypes from 'prop-types';
 import Snackbar from '@material-ui/core/Snackbar';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import Radio from '@material-ui/core/Radio';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Grid from '@material-ui/core/Radio';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -34,12 +43,13 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Monospace',
     fontSize: 30,
   },
+  fechaLabel: {
+    fontFamily: 'Monospace',
+    fontSize: 15
+  },
   divider: {
     marginTop: theme.spacing(4),
     marginBottom: theme.spacing(4)
-  },
-  inputInfo: {
-    margin: theme.spacing(1, 0)
   },
   actions: {
     marginTop: 'auto',
@@ -57,15 +67,36 @@ class CardAddSala extends React.Component{
   constructor(props){
     super(props);
     this.state = {
+      peliculas: [],
       clicked: false,
       status: '',
-      severity: ''
+      severity: '',
+      radioValue: ''
     }
-  }
+  };
+
+  componentDidMount(){
+    var peliculas = [];
+    fetch('http://localhost:3001/api/allPeliculas')
+          .then(data => {
+            return data.json();
+          })
+          .then(data => {
+            peliculas = data.map(
+              (p) => {return p}
+            );
+            this.setState({peliculas: peliculas});
+          });
+  };
 
   closeHandler(event){
     this.setState({clicked: false})
-  }
+  };
+
+  changeHandler(event){
+    this.setState({selectedId: event.target.value});
+  };
+
 
   async saveHandler(){
     var data = {
@@ -74,7 +105,7 @@ class CardAddSala extends React.Component{
       columnas: document.getElementById("numColumnasAdd").value
     }
 
-    var res  = await fetch("http://localhost:3001/api/insertSala", {
+    var res  = await fetch("http://localhost:3001/api/insertEntrada", {
       method: 'POST',
       body: JSON.stringify(data),
       headers:{
@@ -95,49 +126,48 @@ class CardAddSala extends React.Component{
         {clicked: true, status: 'Error. No se ha podido realizar la operación', severity: 'error'}
       );
     }
-  }
+  };
 
 
   render(){
+
     const classes = this.props.classes;
+    const handleChange = (event) => {
+      this.setState({radioValue: event.target.value});
+    }
+
     return(
       <Card className={classes.card}>
         <CardContent className={classes.cardContent}>
           <Typography className={classes.title}>
-            Añadir sala
+            Añadir entrada
           </Typography>
           <Divider className={classes.divider}/>
-          <TextField
-            id="numSalaAdd"
-            type="Number"
-            label="Número de sala"
-            variant="outlined"
-            fullWidth
-            className={classes.inputInfo}/>
-          <TextField
-            id="numFilasAdd"
-            type="Number"
-            label="Número de filas"
-            variant="outlined"
-            fullWidth
-            className={classes.inputInfo}/>
-          <TextField
-            id="numColumnasAdd"
-            type="Number"
-            label="Numero de columnas"
-            variant="outlined"
-            fullWidth
-            className={classes.inputInfo}/>
+          <FormControl fullWidth>
+            <InputLabel id="label-select-peliEntrada">
+              Seleccionar película
+            </InputLabel>
+            <Select
+              labelId="label-select-peliEntrada"
+              fullWidth
+              onChange={this.changeHandler.bind(this)}>
+              {
+                this.state.peliculas.map(
+                  (p,i) => <MenuItem key={i} value={p._id}>{p.titulo}</MenuItem>
+                )
+              }
+            </Select>
+          </FormControl>
         </CardContent>
         <CardActions className={classes.actions}>
           <Button
             variant='contained'
             color='primary'
-            size='large'
-            onClick={this.saveHandler.bind(this)}>
+            size='large'>
             GUARDAR
           </Button>
         </CardActions>
+
         <Snackbar
           open={this.state.clicked}
           autoHideDuration={6000}

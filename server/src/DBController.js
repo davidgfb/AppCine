@@ -134,14 +134,17 @@ const DBController = {
                })
                .catch(err => {
                  console.error(err);
+                 return -1;
                })
+
+    return 0;
   },
 
 
   // Elimina una pelicula (en base a su ID) de la
   // base de datos
   delPelicula: function(req){
-    console.log(req.body)
+
     Pelicula.deleteOne(
       {_id: req.body.id},
       function(err){
@@ -217,7 +220,6 @@ const DBController = {
             titulo: pelicula.titulo
           });
         });
-        console.log(pelisData);
         res.json(pelisData);
       });
   },
@@ -428,7 +430,10 @@ const DBController = {
               })
               .catch(err => {
                 console.error(err);
+                return -1
               })
+
+    return 0;
   },
 
   // Elimina al cliente (en base a su ID) de
@@ -436,11 +441,14 @@ const DBController = {
   delCliente: function(req){
 
     Cliente.deleteOne(
-      {"_id": req.body.id},
+      {_id: req.body.id},
       function(err){
-        if(err) return console.error(err);
+        if(err){
+          return console.error(err);
+          return -1
+        }
       }
-    );
+    ).then(() => {return 0});
   },
 
   // Modifica los campos de un cliente (determinado por su ID)
@@ -479,11 +487,19 @@ const DBController = {
 
   // Devuelve todos los clientes presentes en la
   // base de datos
-  getAllClientes: function(){
-    Cliente.find({},function(err, clientes){
-      if(err) return console.error(err);
-      return clientes;
-    });
+  getAllClientes: function(req, res){
+    var clientesData = [];
+    Cliente.find({}).then(
+      function(clientes, err){
+        if(err) return console.error(err);
+        clientes.forEach(function(cliente){
+          clientesData.push({
+            _id: cliente._id,
+            email: cliente.email
+          });
+        });
+        res.json(clientesData);
+      });
   }
 /*************** FIN FUNCIONES CLIENTES *****************/
 

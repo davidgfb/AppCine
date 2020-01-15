@@ -19,8 +19,8 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     height: '35vh',
-    minWidth: '40%',
-    maxWidth: '45%',
+    minWidth: '95%',
+    maxWidth: '95%',
     margin: theme.spacing(2),
     padding: theme.spacing(2),
     marginRight: theme.spacing(2),
@@ -104,7 +104,6 @@ class CardDelPelicula extends React.Component{
     var data = {
       id: this.state.selectedId
     }
-    console.log(data.id)
     if(data.id !== ''){
       // Eliminar la película
       var res = await fetch('http://localhost:3001/api/delPelicula',{
@@ -122,15 +121,15 @@ class CardDelPelicula extends React.Component{
         this.setState(
           {
             clicked: true,
-            status: 'Correcto',
+            status: 'Operación realizada con éxito',
             severity: 'success'
           }
         );
       }else{
-        this.setState({clicked: true, status: 'Error', severity: 'error'});
+        this.setState({clicked: true, status: 'Error. No se ha podido realizar la operación', severity: 'error'});
       }
     }else{
-      this.setState({clicked: true, status: 'Error', severity: 'error'});
+      this.setState({clicked: true, status: 'Error. No se ha podido realizar la operación', severity: 'error'});
     }
   }
 
@@ -142,7 +141,6 @@ class CardDelPelicula extends React.Component{
   /******************************************/
   changeHandler(event){
     this.setState({selectedId: event.target.value});
-    console.log(this.state.selectedId);
   }
 
   /******************************************/

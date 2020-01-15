@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import CardDelSala from '../Components/CardDelSala';
 import CardModSala from '../Components/CardModSala';
 import CardAddSala from '../Components/CardAddSala';
+import CardDelCliente from '../Components/CardDelCliente';
+import CardModCliente from '../Components/CardModCliente';
+import CardAddCliente from '../Components/CardAddCliente';
 import CardDelPelicula from '../Components/CardDelPelicula';
 import CardModPelicula from '../Components/CardModPelicula';
 import CardAddPelicula from './CardAddPelicula';
@@ -186,7 +189,13 @@ export default function CardPeliculaClient(props){
             color='primary'
             size='medium'
             className={classes.boton}
-            fullWidth>
+            fullWidth
+            onClick={() => {
+              ReactDOM.render(
+                <CardAddCliente/>,
+                document.getElementById("mainContent")
+              );
+            }}>
             Añadir cliente
           </Button>
           <Button
@@ -194,7 +203,13 @@ export default function CardPeliculaClient(props){
             color='primary'
             size='medium'
             className={classes.boton}
-            fullWidth>
+            fullWidth
+            onClick={() => {
+              ReactDOM.render(
+                <CardModCliente/>,
+                document.getElementById("mainContent")
+              );
+            }}>
             Modificar cliente
           </Button>
           <Button
@@ -202,7 +217,13 @@ export default function CardPeliculaClient(props){
             color='primary'
             size='medium'
             className={classes.boton}
-            fullWidth>
+            fullWidth
+            onClick={() => {
+              ReactDOM.render(
+                <CardDelCliente/>,
+                document.getElementById("mainContent")
+              );
+            }}>
             Eliminar cliente
           </Button>
           <Button

@@ -19,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
   card: {
     display: 'flex',
     flexDirection: 'column',
-    minWidth: '25%',
-    maxWidth: '25%',
+    minWidth: '95%',
+    maxWidth: '95%',
     margin: theme.spacing(2),
     padding: theme.spacing(2),
     marginRight: theme.spacing(2),
@@ -100,10 +100,10 @@ class CardDelSala extends React.Component{
       })
 
       if(res.status === 200){
-        this.setState({clicked: true, status: 'Correcto', severity: 'success'});
+        this.setState({clicked: true, status: 'Operación realizada con éxito', severity: 'success'});
         window.location.replace('');
-      }else{this.setState({clicked: true, status: 'Error', severity: 'error'});}
-    }else{this.setState({clicked: true, status: 'Error', severity: 'error'});}
+      }else{this.setState({clicked: true, status: 'Error. No se ha podido realizar la operación', severity: 'error'});}
+    }else{this.setState({clicked: true, status: 'Error. No se ha podido realizar la operación', severity: 'error'});}
   }
 
   /******************************************/
@@ -114,7 +114,6 @@ class CardDelSala extends React.Component{
   /******************************************/
   changeHandler(event){
     this.setState({selectedId: event.target.value});
-    console.log(this.state.selectedId);
   }
 
   /******************************************/
