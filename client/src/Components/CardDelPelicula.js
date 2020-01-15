@@ -81,12 +81,27 @@ class CardDelPelicula extends React.Component{
   }
 
   deleteHandler(){
-    if(this.state.selectedId !== ''){
+
+    // Datos a enviar
+    var data = {
+      id: this.state.selectedId
+    }
+
+    if(data.id !== ''){
       // Eliminar la película
-      console.log(this.state.selectedId)
+      fetch('http://localhost:3001/api/delPelicula',{
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers:{
+            'Content-Type': 'application/json',
+          }
+        }
+      ).catch((err) => {
+        console.error(err);
+      })
+
     }else{
       // No se ha seleccionado nada
-      console.log("Id vacio");
     }
   }
 

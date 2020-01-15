@@ -141,9 +141,9 @@ const DBController = {
   // Elimina una pelicula (en base a su ID) de la
   // base de datos
   delPelicula: function(req){
-
+    console.log(req.body)
     Pelicula.deleteOne(
-      {"_id": req.body.id},
+      {_id: req.body.id},
       function(err){
         if(err) return console.error(err);
       }
