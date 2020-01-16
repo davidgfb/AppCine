@@ -98,7 +98,7 @@ class CardDelSala extends React.Component{
       }).catch((err) => {
         console.error(err);
       })
-
+      console.log(res);
       if(res.status === 200){
         this.setState({clicked: true, status: 'Operación realizada con éxito', severity: 'success'});
         window.location.replace('');

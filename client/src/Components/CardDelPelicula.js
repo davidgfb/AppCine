@@ -106,25 +106,20 @@ class CardDelPelicula extends React.Component{
     }
     if(data.id !== ''){
       // Eliminar la película
-      var res = await fetch('http://localhost:3001/api/delPelicula',{
+      var res = await fetch('http://localhost:3001/api/delPelicula',
+      {
           method: 'POST',
           body: JSON.stringify(data),
           headers:{
             'Content-Type': 'application/json',
           }
-        }
-      ).catch((err) => {
+      }).catch((err) => {
         console.error(err);
       })
 
       if(res.status === 200){
-        this.setState(
-          {
-            clicked: true,
-            status: 'Operación realizada con éxito',
-            severity: 'success'
-          }
-        );
+        this.setState({clicked: true, status: 'Operación realizada con éxito', severity: 'success'});
+        window.location.replace('');
       }else{
         this.setState({clicked: true, status: 'Error. No se ha podido realizar la operación', severity: 'error'});
       }
@@ -148,12 +143,6 @@ class CardDelPelicula extends React.Component{
       const classes = this.props.classes;
       return(
         <Card className={classes.card}>
-          <Typography className={classes.title}>
-            Eliminar película
-          </Typography>
-          <Typography className={classes.infoBad}>
-            Error al eliminar la película
-          </Typography>
           <Typography className={classes.infoOk}>
             Película eliminada
           </Typography>

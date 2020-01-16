@@ -10,6 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import PropTypes from 'prop-types';
+import Checkbox from '@material-ui/core/Checkbox';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -60,6 +61,12 @@ class CardAddPelicula extends React.Component {
       status: ''
     }
   }
+
+  componentDidMount(){
+
+  }
+
+
   async saveHandler(){
 
     var data = {
@@ -96,7 +103,6 @@ class CardAddPelicula extends React.Component {
     }else{
       this.setState({clicked: true, status: 'Error. No se ha podido realizar la operación', severity: 'error'
     })}
-
   };
 
   /******************************************/

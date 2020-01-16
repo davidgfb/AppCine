@@ -149,8 +149,9 @@ const DBController = {
       {_id: req.body.id},
       function(err){
         if(err) return console.error(err);
+        return -1;
       }
-    );
+    ).then(() => {return 0;});
   },
 
   // Modifica los campos de una película (determinada por su ID)
@@ -189,12 +190,12 @@ const DBController = {
   // Devuelve una pelicula siempre y cuando el id
   // indicado en la petición tenga una coincidencia
   queryPelicula: function(req){
-
+    console.log(req.body.id)
     Pelicula.findById(
       req.body.id,
-      function(err, pelicula){
+      function(pelicula, err){
         if(err) return console.error(err);
-
+        console.log(pelicula)
         return pelicula;
       }
     );

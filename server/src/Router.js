@@ -18,12 +18,24 @@ Router.post('/insertPelicula', async function(req, res){
 });
 
 // Ruta API para eliminar una pelicula
-Router.post('/delPelicula', function(req, res){
-  DBController.delPelicula(req);
+Router.post('/delPelicula', async function(req, res){
+  var status = await DBController.delPelicula(req);
+  if(status == -1){
+    res.status("201").send("notOk");
+  }else{
+    res.send('ok');
+  }
 });
 
+Router.post('/queryPelicula', async function(req, res){
+  var pelicula = await DBController.queryPelicula(req);
+  console.log(pelicula);
+  res.json(pelicula);
+})
+
 Router.get('/allPeliculas', async function(req, res){
-  DBController.getAllPeliculas(req, res);
+  var status = await DBController.getAllPeliculas(req, res);
+
 });
 
 // Ruta API para insertar una sala nueva
